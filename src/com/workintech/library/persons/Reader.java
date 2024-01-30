@@ -18,13 +18,21 @@ public class Reader extends Person implements ReaderAuthority, CommonAuthority {
     private List<Book> borrowedBooks;
     private List<Bill> bills;
 
-    public Reader(String name, String surname, String phoneNumber, String email, String id, ReaderStatus readerStatus, String password, List<Book> borrowedBooks, List<Bill> bills) {
-        super(name, surname, phoneNumber, email, PersonRoles.READER);
+
+    public Reader(String name, String surname, String phoneNumber, String email, PersonRoles personRoles, double TCKN, String id, ReaderStatus readerStatus, String password, List<Book> borrowedBooks, List<Bill> bills) {
+        super(name, surname, phoneNumber, email, personRoles, TCKN);
         this.id = id;
         this.readerStatus = readerStatus;
         this.password = password;
         this.borrowedBooks = borrowedBooks;
         this.bills = bills;
+    }
+
+    public Reader(String name, String surname, PersonRoles personRoles, double TCKN, String id, ReaderStatus readerStatus, String password) {
+        super(name, surname, personRoles, TCKN);
+        this.id = id;
+        this.readerStatus = readerStatus;
+        this.password = password;
     }
 
     public String getId() {
@@ -67,30 +75,19 @@ public class Reader extends Person implements ReaderAuthority, CommonAuthority {
         this.bills = bills;
     }
 
+
+
+
     @Override
-    public boolean login(String inputPassword, long inputSchoolNumber) {
+    public boolean login(String inputPassword, double inputTCKN) {
+        if(password.equals(inputPassword) && inputTCKN == getTCKN()  ){
+            System.out.println("Sistemimize Hoşgeldin " + getName());
+            return true;
+        }
+        System.out.println("Hatalı giriş denemesi.Lütfen tekrar deneyiniz.");
         return false;
     }
 
-    @Override
-    public List<Book> searchByTitle(String title) {
-        return null;
-    }
-
-    @Override
-    public Set<Book> searchByAuthor(long id) {
-        return null;
-    }
-
-    @Override
-    public List<Book> searchByISBN(String ISBN) {
-        return null;
-    }
-
-    @Override
-    public List<Book> searchByCategory(String category) {
-        return null;
-    }
 
     @Override
     public void borrow(String book) {
@@ -100,5 +97,10 @@ public class Reader extends Person implements ReaderAuthority, CommonAuthority {
     @Override
     public void returnBook(String returnedBook) {
 
+    }
+
+    @Override
+    public boolean searchBook(String bookName) {
+        return false;
     }
 }

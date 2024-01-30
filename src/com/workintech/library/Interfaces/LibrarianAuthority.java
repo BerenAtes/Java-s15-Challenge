@@ -7,5 +7,5 @@ public interface LibrarianAuthority {
 
     void addBook(Book book );
     void deleteBook(Integer ID);
-    void updateBook(int ID, String author, String name,double price, BookStatus bookStatus,int edition,String dateOfPurchase);
+    void updateBook(Book book,int ID, String author, String name,double price, BookStatus bookStatus,int edition,String dateOfPurchase);
 }

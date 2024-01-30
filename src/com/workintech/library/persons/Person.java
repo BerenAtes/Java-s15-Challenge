@@ -7,21 +7,34 @@ public abstract class Person {
     private String surname;
     private String phoneNumber;
     private String email;
+    private double TCKN;
 
     private PersonRoles personRoles;
 
-    public Person(String name, String surname, String phoneNumber, String email,PersonRoles personRoles) {
+    public Person(String name, String surname, String phoneNumber, String email,PersonRoles personRoles,double TCKN) {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.personRoles=personRoles;
+        this.TCKN=TCKN;
+    }
+
+    public Person(String name, String surname, PersonRoles personRoles,double TCKN) {
+        this.name = name;
+        this.surname = surname;
+        this.personRoles = personRoles;
+        this.TCKN=TCKN;
     }
 
     public Person(String name, String surname, PersonRoles personRoles) {
         this.name = name;
         this.surname = surname;
         this.personRoles = personRoles;
+    }
+
+    public Person(String name) {
+        this.name = name;
     }
 
     public String getName() {
@@ -64,6 +77,14 @@ public abstract class Person {
         this.personRoles = personRoles;
     }
 
+    public double getTCKN() {
+        return TCKN;
+    }
+
+    public void setTCKN(double TCKN) {
+        this.TCKN = TCKN;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -71,6 +92,7 @@ public abstract class Person {
                 ", surname='" + surname + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
+                ", TCKN=" + TCKN +
                 ", personRoles=" + personRoles +
                 '}';
     }
