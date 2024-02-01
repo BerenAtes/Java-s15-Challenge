@@ -11,26 +11,35 @@ public abstract class Person {
 
     private PersonRoles personRoles;
 
-    public Person(String name, String surname, String phoneNumber, String email,PersonRoles personRoles,double TCKN) {
+    public Person(String name, String surname,double TCKN) {
         this.name = name;
         this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.personRoles=personRoles;
         this.TCKN=TCKN;
     }
 
-    public Person(String name, String surname, PersonRoles personRoles,double TCKN) {
+    public Person(String name, String surname, String email, double TCKN) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.TCKN = TCKN;
+    }
+
+    public Person(String name, String surname,PersonRoles personRoles,double TCKN) {
         this.name = name;
         this.surname = surname;
         this.personRoles = personRoles;
-        this.TCKN=TCKN;
+        this.TCKN = TCKN;
     }
 
     public Person(String name, String surname, PersonRoles personRoles) {
         this.name = name;
         this.surname = surname;
         this.personRoles = personRoles;
+    }
+
+    public Person(String email, double TCKN) {
+        this.email = email;
+        this.TCKN = TCKN;
     }
 
     public Person(String name) {

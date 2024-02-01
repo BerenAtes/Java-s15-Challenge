@@ -5,8 +5,8 @@ import com.workintech.library.enums.Category;
 
 import java.util.Objects;
 
-public class Book {
-    private int ID;
+public class Book implements Comparable<Book> {
+    private Long ID;
     private String author;
     private String name;
     private double price;
@@ -14,7 +14,8 @@ public class Book {
     private int stock;
     private Category category;
 
-    public Book(int ID, String author, String name, double price, BookStatus bookStatus, int stock, Category category) {
+
+    public Book(Long ID, String author, String name, double price, BookStatus bookStatus, int stock, Category category) {
         this.ID = ID;
         this.author = author;
         this.name = name;
@@ -28,7 +29,7 @@ public class Book {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
@@ -71,9 +72,9 @@ public class Book {
     public void setStock(int stock) {
         this.stock = stock;
         if (stock>0){
-            this.bookStatus=BookStatus.AVAILABLE;
+            this.bookStatus=BookStatus.NOT_DAMAGED;
         } else {
-            this.bookStatus=BookStatus.NOT_AVAILABLE;
+            this.bookStatus=BookStatus.DAMAGED;
         }
     }
 
@@ -86,18 +87,26 @@ public class Book {
 
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return ID == book.ID && Objects.equals(name, book.name);
+        return ID.equals(book.ID) &&
+                Double.compare(book.price, price) == 0 &&
+                stock == book.stock &&
+                bookStatus == book.bookStatus &&
+                category == book.category &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(name, book.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, name);
+        return Objects.hash(ID, author, name, price, bookStatus, stock, category);
     }
+
 
     @Override
     public String toString() {
@@ -111,4 +120,10 @@ public class Book {
                 ", category=" + category +
                 '}';
     }
+
+    @Override
+    public int compareTo(Book book) {
+        return Long.compare(this.ID, book.getID());
+    }
+
 }

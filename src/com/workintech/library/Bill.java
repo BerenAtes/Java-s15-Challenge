@@ -1,6 +1,6 @@
 package com.workintech.library;
 
-import com.workintech.library.enums.ReaderStatus;
+import com.workintech.library.enums.BookStatus;
 
 import java.text.Collator;
 import java.time.LocalDate;
@@ -8,20 +8,21 @@ import java.util.Locale;
 
 public class Bill implements Comparable<Bill> {
     private LocalDate date;
-    private int ID;
+    private Long ID;
     private String bookname;
-    private ReaderStatus readerStatus;
+    private BookStatus bookStatus;
     private double price;
-    private double VAT;
 
 
-    public Bill(int ID, String bookname, ReaderStatus readerStatus, double price,LocalDate date) {
+
+    public Bill(LocalDate date, Long ID, String bookname, BookStatus bookStatus, double price) {
+        this.date = date;
         this.ID = ID;
         this.bookname = bookname;
-        this.readerStatus = readerStatus;
+        this.bookStatus = bookStatus;
         this.price = price;
-        this.date=date;
     }
+
 
     public void billPrinter(){
         System.out.println("*****************");
@@ -29,8 +30,7 @@ public class Bill implements Comparable<Bill> {
         System.out.println("Tarih:" + date);
         System.out.println("ID :" + ID);
         System.out.println("Kitap İsmi:" + bookname);
-        System.out.println("Okuyucu Tipi:" + readerStatus);
-        System.out.println("KDV:" + VAT);
+        System.out.println("Kitap Tipi:" + bookStatus);
         System.out.println("Toplam Fiyat:" + price);
         System.out.println("******************");
     }
@@ -41,9 +41,8 @@ public class Bill implements Comparable<Bill> {
                 "date=" + date +
                 ", ID=" + ID +
                 ", bookname='" + bookname + '\'' +
-                ", readerStatus=" + readerStatus +
+                ", readerStatus=" + bookStatus +
                 ", price=" + price +
-                ", VAT=" + VAT +
                 '}';
     }
 

@@ -3,7 +3,9 @@ package com.workintech.library;
 import com.workintech.library.persons.Reader;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Library {
     private Map<Long, Reader> readers;
@@ -11,7 +13,7 @@ public class Library {
 
     public Library() {
         this.readers = new HashMap<>();
-        this.books = new HashMap<>();
+        this.books = new TreeMap<>();
     }
 
     public Map<Long, Reader> getReaders() {
